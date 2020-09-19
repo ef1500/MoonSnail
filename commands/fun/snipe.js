@@ -1,5 +1,5 @@
 //Author: ef1500
-const { MessageEmbed } = require("discord.js");
+/*const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 
 module.exports = {
@@ -36,3 +36,4 @@ module.exports = {
     message.channel.send(embed);
   },
 };
+*/
