@@ -1,12 +1,12 @@
-//author ef1500
+//Author: ef1500
 const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 
 module.exports = {
-  name: "gayreverse",
+  name: "reversegay",
   category: "fun",
   description: "Uno Reverse Card, for Gay Babies",
-  usage: `gayreverse`,
+  usage: `reversegay`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
