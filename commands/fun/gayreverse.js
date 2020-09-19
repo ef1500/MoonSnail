@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "reversegay",
   category: "fun",
-  description: "Uno Reverse Card, for Gay Babies",
+  description: "Uno reverse but for weebs.",
   usage: `reversegay`,
   run: async (client, message, args) => {
     console.log(
