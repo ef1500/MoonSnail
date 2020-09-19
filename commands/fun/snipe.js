@@ -16,12 +16,22 @@ module.exports = {
     );
     message.delete();
 
-    var outcomes = ["You Missed.", "Headshot", "Target Eliminated.", "Misfire.", "よくできました！", "Great Shot!", "Target Lost.", "Get better eyes", "You killed an innocent suvillian"];
+    var outcomes = [
+      "You Missed.",
+      "Headshot",
+      "Target Eliminated.",
+      "Misfire.",
+      "よくできました！",
+      "Great Shot!",
+      "Target Lost.",
+      "Get better eyes",
+      "You killed an innocent suvillian",
+    ];
     const randOut = outcomes[Math.floor(Math.random() * chooseArr.length)];
     const embed = new MessageEmbed()
-        .setColor(process.env.GENERAL_COLOR)
-        .setAuthor(`***Result:***`)
-        .setDescription(randOut);
+      .setColor(process.env.GENERAL_COLOR)
+      .setAuthor(`***Result:***`)
+      .setDescription(randOut);
 
     message.channel.send(embed);
   },
