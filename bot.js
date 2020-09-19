@@ -7,7 +7,10 @@ config({
 const fs = require("fs");
 const mongoose = require("mongoose");
 const { settings } = require("cluster");
-const client = new Client();
+const client = new Client({
+  fetchAllMembers: true,
+  disableMentions: "all",
+});
 const Guild = require("./models/guild");
 client.commands = new Collection();
 client.aliases = new Collection();
