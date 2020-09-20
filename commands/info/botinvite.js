@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "botinvite",
   category: "info",
-  description: "DM's author an invite for the bot.",
+  description: "Dm's you a link to invite the bot to your server.",
   usage: `botinvite`,
   run: async (client, message, args) => {
     console.log(

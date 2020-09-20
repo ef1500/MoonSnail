@@ -5,6 +5,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
   name: "unmute",
   category: "moderation",
+  description: "Unmutes a user if they have the muted role.",
   usage: "unmute {user}",
   run: async (client, message, args) => {
     console.log(

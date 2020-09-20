@@ -6,8 +6,8 @@ const Discord = require("discord.js");
 module.exports = {
   name: "prefix",
   category: "admin",
-  description: "Sets the prefix for this server.",
-  usage: `prefix <newPrefix>`,
+  description: "Sets the prefix for the server.",
+  usage: `prefix {any string}`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

@@ -27,7 +27,7 @@ module.exports = {
 
     const say = new Discord.MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
-      .setAuthor(args.join(" ") + " - " + message.author.username);
+      .setAuthor(args.join(" "));
     message.channel.send(say);
   },
 };

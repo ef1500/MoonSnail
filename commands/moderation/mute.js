@@ -5,7 +5,7 @@ const ms = require("ms");
 module.exports = {
   name: "mute",
   category: "moderation",
-  description: "Mutes a user for a specified amount of time.",
+  description: "Mutes a user for an indefinite amount of time.",
   usage: "mute {user}",
   run: async (client, message, args, member) => {
     console.log(

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: "avatar",
-  category: "info",
+  category: "general",
   description: "Displays the mentioned users profile picture in an embed.",
   usage: "avatar {user} *or* avatar",
   run: async (client, message, args) => {
@@ -26,8 +26,10 @@ module.exports = {
     }
     const avatarEmbed = new Discord.MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
-      .setAuthor(user.username)
-      .setImage(user.displayAvatarURL());
-    message.channel.send(avatarEmbed);
+      //.setAuthor(user.username + "'s Profile Picture:")
+      .setImage(user.displayAvatarURL({ dynamic: true }));
+    message.channel.send(avatarEmbed).then((msg) => {
+      msg.delete({ timeout: 30000 });
+    });
   },
 };

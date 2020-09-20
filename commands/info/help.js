@@ -5,8 +5,9 @@ const Discord = require("discord.js");
 module.exports = {
   name: "help",
   category: "info",
-  description: "Displays bot help message.",
-  usage: `help *or* help {commandname}`,
+  description:
+    "Helps you to get started using the bot and provides info about each command.",
+  usage: `help *or* help {command}`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -14,7 +15,6 @@ module.exports = {
         " ran the command: " +
         message.content
     );
-    message.delete();
     if (args[0]) {
       return getCMD(client, message, args[0]);
     } else {
@@ -22,28 +22,13 @@ module.exports = {
     }
   },
 };
-
 function helpMSG(client, message) {
   const embed = new MessageEmbed()
     .setColor(process.env.GENERAL_COLOR)
-    .setTitle("Help")
-    .setThumbnail(client.user.avatarURL())
+    .setAuthor("MoonSnail Help", client.user.avatarURL())
     .setDescription(
-      `For a full list of commands, please type \`${process.env.PREFIX}commands\` \n\nTo see more info about a specific command, please type \`${process.env.PREFIX}help <command>\` without the \`<>\``
-    )
-    .addField(
-      "About",
-      "This bot is my first Discord.js bot and its still in early development so please report any issues to me through discord or the github!"
-    )
-    .addField(
-      "Requirements",
-      'By default the bot is given admin permissions but in order to get the full functionality of MoonSnail please move the role to the top of the role list or give it another role that is higher that members, e.g "bots".'
-    )
-    .addField(
-      "Links",
-      "[MoonSnail Discord Server](https://discord.com/invite/Pta3APY/)\n[Github](https://github.com/seasnail8169/MoonSnail/)\n[Website](https://snailcorp.xyz) (coming soon!!)"
-    )
-    .setFooter("Created by seasnail8169", "https://i.ibb.co/DtzjWZf/pfp.png");
+      `For a full list of commands, use the \`commands\` command. \nTo see more info about a specific command, please type \`help {command}\` \n If you are having issues with the bot or just want to talk about it or suggest features feel free to check out [MoonSnail Development](https://discord.gg/Pta3APY) on discord.`
+    );
   message.author.send(embed);
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
@@ -74,7 +59,9 @@ function getCMD(client, message, input) {
   if (cmd.usage2) info += `\n**Usage 2**: ${cmd.usage2}`;
   message.delete();
 
-  return message.channel.send(
-    embed.setColor(process.env.GENERAL_COLOR).setDescription(info)
-  );
+  return message.channel
+    .send(embed.setColor(process.env.GENERAL_COLOR).setDescription(info))
+    .then((msg) => {
+      msg.delete({ timeout: 30000 });
+    });
 }
