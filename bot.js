@@ -1,4 +1,5 @@
 //IMPORTS
+const levels = require("./handlers/levels");
 const { Client, Collection, GuildMember } = require("discord.js");
 const { config } = require("dotenv");
 config({

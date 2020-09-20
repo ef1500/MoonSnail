@@ -3,6 +3,7 @@ var setTitle = require("console-title");
 const readline = require("readline");
 var center = require("center-align");
 var colors = require("colors");
+const levels = require("../handlers/levels");
 
 module.exports = async (client) => {
   console.log(
@@ -34,4 +35,5 @@ module.exports = async (client) => {
       type: "LISTENING",
     },
   });
+  levels(client);
 };
