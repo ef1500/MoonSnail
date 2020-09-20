@@ -22,7 +22,6 @@ module.exports = {
           msg.createdTimestamp - message.createdTimestamp
         )} ms** \nAPI ping is **${Math.round(client.ws.ping)} ms**`
       );
-
     message.channel.send(embed);
   },
 };

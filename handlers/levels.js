@@ -1,9 +1,18 @@
+const { MessageEmbed } = require("discord.js");
 const profileSchema = require("../models/profile");
 
 module.exports = (client) => {
-  client.on("message", (message) => {
+  client.on("message", async (message) => {
+    if (message.channel.type === "dm") {
+      return;
+    }
     const { guild, member } = message;
-
+    if (member.id === "754384726655107152") {
+      return;
+    }
+    if (member.id === "750674353758142555") {
+      return;
+    }
     addXP(guild.id, member.id, 23, message);
   });
 };
@@ -36,11 +45,16 @@ const addXP = async (guildId, userId, xpToAdd, message) => {
     if (xp >= needed) {
       ++level;
       xp -= needed;
-      message.reply(
-        `Poggers, you are now level ${level}! You need ${getNeededXP(
-          level
-        )} XP to level up again.`
-      );
+      const embed = new MessageEmbed()
+        .setColor(process.env.GENERAL_COLOR)
+        .setAuthor(
+          `Poggers ${
+            result.username
+          }, you are now level ${level}! You need ${getNeededXP(
+            level
+          )} XP to level up again.`
+        );
+      message.channel.send(embed);
       await profileSchema.updateOne(
         {
           guildId,

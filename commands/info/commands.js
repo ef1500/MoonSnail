@@ -5,7 +5,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "commands",
   category: "info",
-  description: "Displays a full list of bot commands.",
+  description: "Dm's you a full list of bot commands.",
   usage: `commands`,
   run: async (client, message) => {
     console.log(
@@ -21,8 +21,7 @@ module.exports = {
 function getAll(client, message) {
   const embed = new MessageEmbed()
     .setColor(process.env.GENERAL_COLOR)
-    .setTitle("Command List")
-    .setThumbnail(client.user.avatarURL())
+    .setAuthor("MoonSnail Commands", client.user.avatarURL())
     .setFooter("Created by seasnail8169", "https://i.ibb.co/DtzjWZf/pfp.png");
 
   const commands = (category) => {
@@ -50,7 +49,7 @@ function getAll(client, message) {
   message.delete();
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
-    .setAuthor(`Sent the bots commandlist to your DM's!`);
+    .setAuthor(`Sent the bots command list to your Dm's!`);
   message.channel.send(dmsent).then((msg) => {
     msg.delete({ timeout: 3000 });
   });
