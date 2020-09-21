@@ -6,7 +6,6 @@ module.exports = {
     name: "ez",
     category: "fun",
     description: "GG EZ",
-    usage: `ez`,
     run: async (client, message, args) => {
         console.log(
             "ACTIVITY: " +
@@ -20,7 +19,7 @@ module.exports = {
                 "https://i.imgur.com/vBgfzFL.png"
             )
             .then((msg) => {
-                msg.delete({ timeout: 60000 });
+                msg.delete({ timeout: 10000 });
             });
     },
 };
