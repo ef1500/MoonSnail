@@ -1,33 +1,30 @@
-const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
-const readline = require("readline");
+//Imports requirements
 var center = require("center-align");
-var colors = require("colors");
 
 module.exports = {
   name: "ontop",
   category: "fun",
   description: "MoonSnail on top",
-  run: async (client, message, args) => {
+  run: async (message) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.author.username +
         " ran the command: " +
         message.content
     );
+    //Deletes the command message
     message.delete();
+    //Sends the response and deletes it after 1000ms
     message.channel
       .send(
-        "lol \n" +
-          center(`
-        ┏━┓┏━┓╋╋╋╋╋╋╋╋┏━━━┓╋╋╋╋╋╋┏┓╋┏━━━┓╋╋╋┏━━━━┓
-        ┃┃┗┛┃┃╋╋╋╋╋╋╋╋┃┏━┓┃╋╋╋╋╋╋┃┃╋┃┏━┓┃╋╋╋┃┏┓┏┓┃
-          ┃┏┓┏┓┣━━┳━━┳━┓┃┗━━┳━┓┏━━┳┫┃╋┃┃╋┃┣━┓╋┗┛┃┃┣┻━┳━━┓
-          ┃┃┃┃┃┃┏┓┃┏┓┃┏┓╋━━┓┃┏┓┫┏┓┣┫┃╋┃┃╋┃┃┏┓┓╋╋┃┃┃┏┓┃┏┓┃
-          ┃┃┃┃┃┃┗┛┃┗┛┃┃┃┃┗━┛┃┃┃┃┏┓┃┃┗┓┃┗━┛┃┃┃┃╋╋┃┃┃┗┛┃┗┛┃
-          ┗┛┗┛┗┻━━┻━━┻┛┗┻━━━┻┛┗┻┛┗┻┻━┛┗━━━┻┛┗┛╋╋┗┛┗━━┫┏━┛
-          ╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┃┃
-          ╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋╋┗┛`)
+        center(`pog
+╭━┳━╮╱╱╱╱╱╱╭━━╮╱╱╱╱╱╭╮╱╱╱╱╱╱╱╱╭╮
+┃┃┃┃┣━┳━┳━┳┫━━╋━┳┳━╮┣╋╮╱╭━┳━┳╮┃╰┳━┳━╮
+┃┃┃┃┃╋┃╋┃┃┃┣━━┃┃┃┃╋╰┫┃╰╮┃╋┃┃┃┃┃╭┫╋┃╋┃
+╰┻━┻┻━┻━┻┻━┻━━┻┻━┻━━┻┻━╯╰━┻┻━╯╰━┻━┫╭╯
+╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
+      `)
       )
       .then((msg) => {
         msg.delete({ timeout: 1000 });

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+//Import requirements
 const mongoose = require("mongoose");
 const Guild = require("../../models/guild");
 const Discord = require("discord.js");
@@ -8,13 +8,15 @@ module.exports = {
   category: "admin",
   description: "Sets the prefix for the server.",
   usage: `prefix {any string}`,
-  run: async (client, message, args) => {
+  run: async (message, args) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.member.user +
         " ran the command: " +
         message.content
     );
+    //Gets guild info from the database or use the schema to make new data
     const settings = await Guild.findOne(
       {
         guildID: message.guild.id,
@@ -29,16 +31,16 @@ module.exports = {
             prefix: process.env.PREFIX,
             color: process.env.COLOR,
             muterole: "Muted",
-            autoRole: "null",
-            joinMessage: "null",
-            leaveMessage: "null",
+            autoRole: "placeholder",
+            joinMessage: "placeholder",
+            leaveMessage: "placeholder",
           });
-
+          //Saves info to database
           newGuild.save().catch((err) => console.error(err));
         }
       }
     );
-
+    //Warns that the user does not have permissions
     if (!message.member.hasPermission("ADMINISTRATOR")) {
       message.delete();
       const noperms = new Discord.MessageEmbed()
@@ -49,7 +51,7 @@ module.exports = {
       });
       return;
     }
-
+    //Warns that there was no prefix specified
     if (args.length < 1) {
       message.delete();
       const noprefix = new Discord.MessageEmbed()
@@ -62,11 +64,11 @@ module.exports = {
       });
       return;
     }
-
+    //Updates prefix
     await settings.updateOne({
       prefix: args[0],
     });
-
+    //Sends confirmation of change
     const prefixchange = new Discord.MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
       .setAuthor(`Your server prefix has been updated to \`${args[0]}\``);

@@ -8,6 +8,7 @@ module.exports = {
   category: "general",
   description: "Shows the authors xp level.",
   run: async (client, message, args) => {
+    //log activity
     console.log(
       "ACTIVITY: " +
         message.member.user +

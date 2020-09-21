@@ -1,7 +1,7 @@
 //Author: ef1500
+//Imports requirements
 const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
-
+//Tells the bot what it can reply with
 var monkeypics = [
   "https://i.ytimg.com/vi/M3XECvpSPNA/maxresdefault.jpg",
   "https://i.imgflip.com/33kw.jpg",
@@ -9,26 +9,28 @@ var monkeypics = [
 ];
 
 module.exports = {
-  name: "monkey",
+  name: "monky",
   category: "fun",
-  description: "monkey brain",
-  run: async (client, message, args) => {
+  description: "monky brain",
+  run: async (message) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.author.username +
         " ran the command: " +
         message.content
     );
+    //Deletes the command message
     message.delete();
+    //Picks a response to send
     const randMonkey =
       monkeypics[Math.floor(Math.random() * monkeypics.length)];
-
+    //Sends response in an embed and deletes it after 5000ms
     const embed = new MessageEmbed()
-      .setColor(process.env.FAIL_COLOR)
-      .setAuthor(`MONKEY`)
+      .setColor(process.env.GENERAL_COLOR)
       .setImage(randMonkey);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

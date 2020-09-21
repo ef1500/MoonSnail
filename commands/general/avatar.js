@@ -1,3 +1,4 @@
+//Imports requirements
 const Discord = require("discord.js");
 
 module.exports = {
@@ -5,13 +6,15 @@ module.exports = {
   category: "general",
   description: "Displays the mentioned users profile picture in an embed.",
   usage: "avatar (self) *or* avatar {user}",
-  run: async (client, message, args) => {
+  run: async (message) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.author.username +
         " ran the command: " +
         message.content
     );
+    //Sets the user as the first mention or if there is no mention, the author
     const user = message.mentions.users.first() || message.author;
     if (!user) {
       message.delete();
