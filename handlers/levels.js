@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { resolveInclude } = require("ejs");
 const profileSchema = require("../models/profile");
 
-module.exports = (client) => {
+module.exports = (client, member) => {
   client.on("message", async (message) => {
     if (message.channel.type === "dm") {
       return;
