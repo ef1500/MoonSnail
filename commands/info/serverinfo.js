@@ -36,7 +36,6 @@ module.exports = {
   name: "serverinfo",
   category: "info",
   description: "Displays information about the server.",
-  usage: `serverinfo`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

@@ -4,7 +4,6 @@ module.exports = {
   name: "ping",
   category: "info",
   description: "Returns bot and API latency in milliseconds.",
-  usage: `ping`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

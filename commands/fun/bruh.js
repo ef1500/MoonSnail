@@ -12,7 +12,6 @@ module.exports = {
   name: "bruh",
   category: "fun",
   description: "Shows a random bruh pic.",
-  usage: `bruh`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

@@ -8,7 +8,6 @@ module.exports = {
   category: "fun",
   description:
     "Rock Paper Scissors. React to one of the emojis to play the game.",
-  usage: "rps",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

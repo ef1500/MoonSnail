@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
+    "imageapi.js": "^1.0.16",
     "memorystore": "^1.6.2",
     "moment": "^2.27.0",
     "moment-duration-format": "^2.3.2",

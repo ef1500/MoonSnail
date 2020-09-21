@@ -5,7 +5,6 @@ module.exports = {
   name: "reverse",
   category: "fun",
   description: "Uno reverse lol.",
-  usage: `reverse`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

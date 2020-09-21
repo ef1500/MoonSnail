@@ -7,7 +7,6 @@ module.exports = {
   name: "leaderboard",
   category: "general",
   description: "Shows the xp leaderboard for this server.",
-  usage: `leaderboard`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -27,8 +26,12 @@ module.exports = {
           console.log(err);
         }
         const embed = new MessageEmbed()
-          .setTitle(`**Leaderboard for: ${message.guild.name}**`)
-          .setThumbnail(message.guild.iconURL({ dynamic: true }));
+          .setAuthor(
+            `Leaderboard for: ${message.guild.name}`,
+            client.user.avatarURL()
+          )
+          .setThumbnail(message.guild.iconURL({ dynamic: true }))
+          .setTimestamp();
 
         if (res.length === 0) {
           embed.setColor(process.env.FAIL_COLOR);

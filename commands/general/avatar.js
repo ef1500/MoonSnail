@@ -4,7 +4,7 @@ module.exports = {
   name: "avatar",
   category: "general",
   description: "Displays the mentioned users profile picture in an embed.",
-  usage: "avatar {user} *or* avatar",
+  usage: "avatar (self) *or* avatar {user}",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -27,7 +27,9 @@ module.exports = {
     const avatarEmbed = new Discord.MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       //.setAuthor(user.username + "'s Profile Picture:")
-      .setImage(user.displayAvatarURL({ dynamic: true }));
+      .setImage(
+        user.displayAvatarURL({ dynamic: true, format: "png", size: 512 })
+      );
     message.channel.send(avatarEmbed).then((msg) => {
       msg.delete({ timeout: 30000 });
     });

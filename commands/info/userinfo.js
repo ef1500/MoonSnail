@@ -4,7 +4,7 @@ const moment = require("moment");
 
 module.exports = {
   name: "userinfo",
-  usage: "userinfo {user} or userinfo",
+  usage: "userinfo (self) or userinfo {user}",
   category: "info",
   description: "Get info of mentioned user or yourself.",
 
