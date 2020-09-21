@@ -12,7 +12,6 @@ module.exports = {
     name: "monkey",
     category: "fun",
     description: "monkey brain",
-    usage: `monkey`,
     run: async (client, message, args) => {
         console.log(
             "ACTIVITY: " +
@@ -28,7 +27,7 @@ module.exports = {
             .setAuthor(`MONKEY`)
             .setImage(randMonkey);
         message.channel.send(embed).then((msg) => {
-            msg.delete({ timeout: 60000 });
+            msg.delete({ timeout: 30000 });
         });
     },
 };
