@@ -17,7 +17,6 @@ module.exports = {
       guildID: message.guild.id,
     });
     let question = message.content.slice(settings.prefix.length + 6);
-    console.log(question);
     if (!question) return message.channel.send(`pogger not`);
     else {
       let responses = [

@@ -18,7 +18,7 @@ module.exports = {
       .setColor(process.env.GENERAL_COLOR)
       .setImage("https://pics.me.me/thumb_pogchamp-43297127.png");
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

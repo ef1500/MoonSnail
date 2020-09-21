@@ -28,7 +28,7 @@ module.exports = {
       .setTitle(`Monky`)
       .setImage(randMonkey);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

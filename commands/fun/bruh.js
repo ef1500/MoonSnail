@@ -26,7 +26,7 @@ module.exports = {
       .setColor(process.env.FAIL_COLOR)
       .setImage(randBruh);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 60000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

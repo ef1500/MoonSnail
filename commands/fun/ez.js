@@ -18,7 +18,7 @@ module.exports = {
       .setColor(process.env.GENERAL_COLOR)
       .setImage("https://i.imgur.com/vBgfzFL.png");
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };
