@@ -1,17 +1,21 @@
+//Imports requirements
 const { MessageEmbed } = require("discord.js");
 const api = require("imageapi.js");
+
 module.exports = {
   name: "reddit",
   category: "fun",
   description: "Get an image from a subreddit.",
   usage: "reddit {subreddit}",
-  run: async (client, message, args) => {
+  run: async (message) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.author.username +
         " ran the command: " +
         message.content
     );
+    //Warns that the channel is not nsfw so cannot send
     if (!message.channel.nsfw) {
       const embed = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
@@ -22,7 +26,9 @@ module.exports = {
       });
       return;
     }
-    let Subreddit = message.content.slice(8);
+    //Sets the subreddit to search as any arguments after the prefix and command length
+    let Subreddit = message.content.slice(settings.prefix.length + 7);
+    //Warns that there was no vaild arguments provided
     if (!Subreddit) {
       const noreddit = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
@@ -34,7 +40,9 @@ module.exports = {
       return;
     }
     try {
+      //Fetches the image using the api
       let image = await api(Subreddit, true);
+      //Sends the response in an embed and deletes it after 60000ms
       const Embed = new MessageEmbed()
         .setAuthor("A random image from:")
         .setTitle(`r/${Subreddit}`)
@@ -46,6 +54,7 @@ module.exports = {
         msg.delete({ timeout: 60000 });
       });
     } catch {
+      //Warns that the subreddit specified was not a valid subreddit or that there wa an error fetching the image
       const badreddit = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
         .setAuthor(`Could not get info from that subreddit!`);

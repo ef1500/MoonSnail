@@ -1,18 +1,21 @@
+//Imports requirements
 const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
 
 module.exports = {
   name: "reverse",
   category: "fun",
   description: "Uno reverse lol.",
-  run: async (client, message, args) => {
+  run: async (message) => {
+    //Logs activity
     console.log(
       "ACTIVITY: " +
         message.author.username +
         " ran the command: " +
         message.content
     );
+    //Deletes the command message
     message.delete();
+    //Sends the response as an embed and deletes it after 30000ms
     const embed = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage(

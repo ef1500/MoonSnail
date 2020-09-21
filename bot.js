@@ -1,24 +1,21 @@
 //IMPORTS
-const levels = require("./handlers/levels");
-const { Client, Collection, GuildMember } = require("discord.js");
+const { Client, Collection } = require("discord.js");
 const { config } = require("dotenv");
 config({
   path: `${__dirname}/.env`,
 });
 const fs = require("fs");
-const mongoose = require("mongoose");
-const { settings } = require("cluster");
+
+//CLIENT
 const client = new Client({
   fetchAllMembers: true,
   disableMentions: "all",
 });
-const Guild = require("./models/guild");
-client.commands = new Collection();
-client.aliases = new Collection();
-client.mongoose = require("./utils/mongoose");
-client.categories = fs.readdirSync("./commands/");
 
 ///HANDLERS
+client.commands = new Collection();
+client.mongoose = require("./utils/mongoose");
+client.categories = fs.readdirSync("./commands/");
 ["command"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });

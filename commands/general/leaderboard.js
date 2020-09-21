@@ -8,6 +8,7 @@ module.exports = {
   category: "general",
   description: "Shows the xp leaderboard for this server.",
   run: async (client, message, args) => {
+    //log activity
     console.log(
       "ACTIVITY: " +
         message.member.user +
