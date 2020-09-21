@@ -5,7 +5,6 @@ module.exports = {
   name: "about",
   category: "info",
   description: "Dm's you some information about the bot.",
-  usage: `about`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -16,11 +15,11 @@ module.exports = {
     message.delete();
     const about = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
-      .setAuthor("MoonSnail", client.user.avatarURL())
+      .setAuthor("About MoonSnail", client.user.avatarURL())
       .setThumbnail(client.user.avatarURL())
 
       .setDescription(
-        "This bot is my first Discord.js bot and its still in early development so please report any issues to me through discord or the github!"
+        "This bot is my first Discord.js bot and its still in early development so please report any issues to me through discord or the github."
       )
       .addFields(
         {
@@ -32,11 +31,10 @@ module.exports = {
         {
           name: "Some useful links:",
           value:
-            "[MoonSnail Discord Server](https://discord.com/invite/Pta3APY/)\n[Github](https://github.com/seasnail8169/MoonSnail/)\n[Website](https://snailcorp.xyz) (coming soon!!)",
+            "[MoonSnail on Discord](https://discord.gg/Pta3APY)\n[MoonSnail on Github](https://github.com/seasnail8169/MoonSnail/)\n[The SnailCorp™️ Website](https://snailcorp.xyz) (coming soon!!)",
           inline: true,
         }
-      )
-      .setFooter("Created by seasnail8169", "https://i.ibb.co/DtzjWZf/pfp.png");
+      );
     message.author.send(about);
     const dmsent = new MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)

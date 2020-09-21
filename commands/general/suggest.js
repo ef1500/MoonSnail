@@ -6,7 +6,7 @@ module.exports = {
   name: "suggest",
   usage: "suggest {message}",
   description:
-    "Sends a suggestion as an embed, in a channel called suggestions.",
+    "Sends a suggestion as an embed, in a channel called <#suggestions>.",
   category: "general",
   run: async (client, message, args) => {
     console.log(

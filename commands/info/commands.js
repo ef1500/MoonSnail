@@ -6,7 +6,6 @@ module.exports = {
   name: "commands",
   category: "info",
   description: "Dm's you a full list of bot commands.",
-  usage: `commands`,
   run: async (client, message) => {
     console.log(
       "ACTIVITY: " +
@@ -21,8 +20,7 @@ module.exports = {
 function getAll(client, message) {
   const embed = new MessageEmbed()
     .setColor(process.env.GENERAL_COLOR)
-    .setAuthor("MoonSnail Commands", client.user.avatarURL())
-    .setFooter("Created by seasnail8169", "https://i.ibb.co/DtzjWZf/pfp.png");
+    .setAuthor("MoonSnail Commands", client.user.avatarURL());
 
   const commands = (category) => {
     return client.commands
@@ -34,7 +32,7 @@ function getAll(client, message) {
   const info = client.categories
     .map(
       (cat) =>
-        stripIndents`**${cat[0].toLowerCase() + cat.slice(1)}** \n ${commands(
+        stripIndents`**${cat[0].toLowerCase() + cat.slice(1)}:** \n ${commands(
           cat
         )}`
     )

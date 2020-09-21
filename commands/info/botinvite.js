@@ -4,7 +4,6 @@ module.exports = {
   name: "botinvite",
   category: "info",
   description: "Dm's you a link to invite the bot to your server.",
-  usage: `botinvite`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

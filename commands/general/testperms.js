@@ -4,7 +4,6 @@ module.exports = {
   name: "testperms",
   category: "general",
   description: "Tests if you have admin perms on a server.",
-  usage: "testperms",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

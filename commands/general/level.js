@@ -7,7 +7,6 @@ module.exports = {
   name: "level",
   category: "general",
   description: "Shows the authors xp level.",
-  usage: `level`,
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +

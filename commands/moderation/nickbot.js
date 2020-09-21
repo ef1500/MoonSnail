@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const prefix = "%";
+const Guild = require("../../models/guild");
 
 module.exports = {
   name: "nickbot",
@@ -7,6 +7,9 @@ module.exports = {
   description: "Changes the bots nickname.",
   usage: "nickbot {nickname}",
   run: async (client, message, args) => {
+    const settings = await Guild.findOne({
+      guildID: message.guild.id,
+    });
     console.log(
       "ACTIVITY: " +
         message.author.username +
@@ -26,7 +29,7 @@ module.exports = {
     }
 
     if (message.member.hasPermission("MANAGE_NICKNAMES")) {
-      let nick = message.content.slice((prefix + "nickbot").length);
+      let nick = message.content.slice(settings.prefix.length + 8);
       if (!nick) {
         const nonick = new Discord.MessageEmbed()
           .setColor(process.env.FAIL_COLOR)
@@ -39,7 +42,7 @@ module.exports = {
       }
       message.guild.me.setNickname(nick);
       const nickupdate = new Discord.MessageEmbed()
-        .setColor(process.env.SUCCESSCOLOR)
+        .setColor(process.env.SUCCESS_COLOR)
         .setAuthor("Updated the bots nickname.");
       message.delete();
       message.channel.send(nickupdate).then((msg) => {

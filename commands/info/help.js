@@ -27,8 +27,10 @@ function helpMSG(client, message) {
     .setColor(process.env.GENERAL_COLOR)
     .setAuthor("MoonSnail Help", client.user.avatarURL())
     .setDescription(
-      `For a full list of commands, use the \`commands\` command. \nTo see more info about a specific command, please type \`help {command}\` \n If you are having issues with the bot or just want to talk about it or suggest features feel free to check out [MoonSnail Development](https://discord.gg/Pta3APY) on discord.`
+      `By default the prefix is \`%\` but this may have changed so check with your server admin if you are unsure. For a full list of commands, use the \`commands\` command. \nTo see more info about a specific command, please type \`help {command}\` \n If you are having issues with the bot or just want to talk about it or suggest features feel free to check out [MoonSnail Development](https://discord.gg/Pta3APY) on discord.`
     );
+  message.delete();
+
   message.author.send(embed);
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
@@ -51,14 +53,11 @@ function getCMD(client, message, input) {
     );
   }
 
-  if (cmd.name) info = `**Command Name**: ${cmd.name}`;
-  if (cmd.description) info += `\n**Description**: ${cmd.description}`;
+  if (cmd.name) info = `**Command Name**: \`${cmd.name}\``;
+  if (cmd.description) info += `\n**Description**: \`${cmd.description}\``;
   if (cmd.usage) {
-    info += `\n**Usage**: ${cmd.usage}`;
+    info += `\n**Usage**: \`${cmd.usage}\``;
   }
-  if (cmd.usage2) info += `\n**Usage 2**: ${cmd.usage2}`;
-  message.delete();
-
   return message.channel
     .send(embed.setColor(process.env.GENERAL_COLOR).setDescription(info))
     .then((msg) => {

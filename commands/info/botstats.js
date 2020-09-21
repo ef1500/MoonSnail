@@ -4,10 +4,15 @@ const { version } = require("discord.js");
 
 module.exports = {
   name: "botstats",
-  usage: "botstats",
   category: "info",
   description: "Get the current stats of the bot.",
   run: async (client, message) => {
+    console.log(
+      "ACTIVITY: " +
+        message.author.username +
+        " ran the command: " +
+        message.content
+    );
     const embed = new MessageEmbed()
       .setAuthor("MoonSnail Stats", client.user.avatarURL())
       .setColor(process.env.GENERAL_COLOR)

@@ -6,7 +6,7 @@ module.exports = {
   name: "tempmute",
   category: "moderation",
   description: "Mutes a user for a specified amount of time.",
-  usage: "tempmute {user} {time `s, m, h, d`}",
+  usage: "tempmute {user} {time s, m, h, d}",
   run: async (client, message, args, member) => {
     console.log(
       "ACTIVITY: " +
