@@ -16,6 +16,13 @@ const verificationLevels = {
   VERY_HIGH: "┻━┻ ﾐヽ(ಠ益ಠ)ノ彡┻━┻",
 };
 
+function checkDays(date) {
+  let now = new Date();
+  let diff = now.getTime() - date.getTime();
+  let days = Math.floor(diff / 86400000);
+  return days + (days == 1 ? " day" : " days") + " ago";
+}
+
 const regions = {
   brazil: "Brazil",
   europe: "Europe",
@@ -43,7 +50,6 @@ module.exports = {
         " ran the command: " +
         message.content
     );
-
     const roles = message.guild.roles.cache
       .sort((a, b) => b.position - a.position)
       .map((role) => role.toString());
@@ -52,12 +58,12 @@ module.exports = {
     const emojis = message.guild.emojis.cache;
 
     const embed = new MessageEmbed()
-      .setDescription(`**Server info for __${message.guild.name}__**`)
+      .setDescription(`**Server info: ${message.guild.name}**`)
       .setColor(process.env.GENERAL_COLOR)
       .setThumbnail(message.guild.iconURL({ dynamic: true }))
-      .addField("General", [
+      .addField("General Info:", [
         `**» Name:** ${message.guild.name}`,
-        `**» Owner:** ${message.guild.owner.user.tag}`,
+        `**» Owner:** <@${message.guild.owner.user.id}>`,
         `**» Region:** ${regions[message.guild.region]}`,
         `**» Boost Tier:** ${
           message.guild.premiumTier
@@ -77,7 +83,7 @@ module.exports = {
         ).fromNow()}`,
         "\u200b",
       ])
-      .addField("Stats", [
+      .addField("Stats:", [
         `**» Role Count:** ${roles.length}`,
         `**» Emoji Count:** ${emojis.size}`,
         `**» Regular Emoji Count:** ${
@@ -96,8 +102,8 @@ module.exports = {
           channels.filter((channel) => channel.type === "voice").size
         }`,
         `**» Boost Count:** ${message.guild.premiumSubscriptionCount || "0"}`,
-      ]);
-
+      ])
+      .addField("Roles:", `${roles.join(" ")}`);
     message.channel.send(embed).then((msg) => {
       msg.delete({ timeout: 60000 });
     });

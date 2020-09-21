@@ -60,7 +60,7 @@ module.exports = {
       .addField("Status", status);
 
     message.channel.send(userEmbed).then((msg) => {
-      msg.delete({ timeout: 60000 });
+      msg.delete({ timeout: 30000 });
     });
   },
 };

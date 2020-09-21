@@ -14,8 +14,11 @@ module.exports = {
         message.content
     );
     message.delete();
-    message.channel.send("https://i.imgur.com/vBgfzFL.png").then((msg) => {
-      msg.delete({ timeout: 10000 });
+    const embed = new MessageEmbed()
+      .setColor(process.env.GENERAL_COLOR)
+      .setImage("https://i.imgur.com/vBgfzFL.png");
+    message.channel.send(embed).then((msg) => {
+      msg.delete({ timeout: 30000 });
     });
   },
 };

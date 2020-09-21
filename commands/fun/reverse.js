@@ -13,10 +13,13 @@ module.exports = {
         message.content
     );
     message.delete();
-    message.channel
-      .send("https://www.uokpl.rs/fpng/f/151-1516996_transparent-uno-card.png")
-      .then((msg) => {
-        msg.delete({ timeout: 60000 });
-      });
+    const embed = new MessageEmbed()
+      .setColor(process.env.GENERAL_COLOR)
+      .setImage(
+        "https://www.uokpl.rs/fpng/f/151-1516996_transparent-uno-card.png"
+      );
+    message.channel.send(embed).then((msg) => {
+      msg.delete({ timeout: 30000 });
+    });
   },
 };

@@ -9,9 +9,9 @@ var monkeypics = [
 ];
 
 module.exports = {
-  name: "monkey",
+  name: "monky",
   category: "fun",
-  description: "monkey brain",
+  description: "monky brain",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -24,8 +24,8 @@ module.exports = {
       monkeypics[Math.floor(Math.random() * monkeypics.length)];
 
     const embed = new MessageEmbed()
-      .setColor(process.env.FAIL_COLOR)
-      .setAuthor(`MONKEY`)
+      .setColor(process.env.GENERAL_COLOR)
+      .setTitle(`Monky`)
       .setImage(randMonkey);
     message.channel.send(embed).then((msg) => {
       msg.delete({ timeout: 30000 });

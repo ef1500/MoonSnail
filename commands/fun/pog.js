@@ -14,10 +14,11 @@ module.exports = {
         message.content
     );
     message.delete();
-    message.channel
-      .send("https://pics.me.me/thumb_pogchamp-43297127.png")
-      .then((msg) => {
-        msg.delete({ timeout: 30000 });
-      });
+    const embed = new MessageEmbed()
+      .setColor(process.env.GENERAL_COLOR)
+      .setImage("https://pics.me.me/thumb_pogchamp-43297127.png");
+    message.channel.send(embed).then((msg) => {
+      msg.delete({ timeout: 30000 });
+    });
   },
 };

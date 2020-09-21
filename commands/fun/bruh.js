@@ -24,7 +24,6 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setColor(process.env.FAIL_COLOR)
-      .setAuthor(`Bruh Moment:`)
       .setImage(randBruh);
     message.channel.send(embed).then((msg) => {
       msg.delete({ timeout: 60000 });
