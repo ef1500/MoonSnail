@@ -16,6 +16,7 @@ module.exports = {
       .setImage(
         message.guild.iconURL({ dynamic: true, format: "png", size: 512 })
       );
+    message.delete({ timeout: 50000 });
     message.channel.send(avatarEmbed).then((msg) => {
       msg.delete({ timeout: 50000 });
     });

@@ -3,7 +3,7 @@ const moment = require("moment");
 
 module.exports = {
   name: "userinfo",
-  usage: "userinfo (self) or userinfo {user}",
+  usage: "userinfo (self) or userinfo {user} (id or mention)",
   category: "info",
   description: "Get info of mentioned user or yourself.",
 
@@ -58,6 +58,7 @@ module.exports = {
         `${joineddate} \n» ${joined} day(s) ago`
       )
       .addField("**Status:**", status);
+    message.delete({ timeout: 50000 });
     message.channel.send(profile).then((msg) => {
       msg.delete({ timeout: 50000 });
     });

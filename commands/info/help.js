@@ -59,6 +59,7 @@ function getCMD(client, message, input) {
   if (cmd.usage) {
     info += `\n**Usage**: \`${cmd.usage}\``;
   }
+  message.delete({ timeout: 50000 });
   return message.channel
     .send(embed.setColor(process.env.GENERAL_COLOR).setDescription(info))
     .then((msg) => {

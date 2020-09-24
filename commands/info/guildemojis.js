@@ -35,6 +35,7 @@ module.exports = {
         `**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Total [${OverallEmojis}]**`
       )
       .setColor(process.env.GENERAL_COLOR);
+    message.delete({ timeout: 50000 });
     message.channel.send(Embed).then((msg) => {
       msg.delete({ timeout: 50000 });
     });

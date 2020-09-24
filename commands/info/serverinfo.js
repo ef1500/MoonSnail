@@ -104,6 +104,7 @@ module.exports = {
         `**» Boost Count:** ${message.guild.premiumSubscriptionCount || "0"}`,
       ])
       .addField("Roles:", `${roles.join(" ")}`);
+    message.delete({ timeout: 50000 });
     message.channel.send(embed).then((msg) => {
       msg.delete({ timeout: 50000 });
     });

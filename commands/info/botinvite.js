@@ -11,7 +11,7 @@ module.exports = {
         " ran the command: " +
         message.content
     );
-    message.delete();
+    message.delete({ timeout: 5000 });
     let invite =
       "https://discord.com/oauth2/authorize?client_id=750674353758142555&permissions=8&scope=bot";
     message.author.send(invite);

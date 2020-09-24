@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: "about",
   category: "info",
-  description: "Dm's you some information about the bot.",
+  description: "Dm's a user some information about the bot.",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
@@ -43,7 +43,7 @@ module.exports = {
           `, I just sent some useful info to your dm's!`
       );
     message.channel.send(dmsent).then((msg) => {
-      msg.delete({ timeout: 10000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };
