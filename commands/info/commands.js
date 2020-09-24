@@ -44,13 +44,15 @@ function getAll(client, message) {
         `help {command}\` to see more information about a specific command. \n \n ${info}`
     )
   );
+  console.log;
   message.delete();
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
     .setDescription(
-      message.author + `, I just sent the bots command list to your dm's!`
+      `<@${message.author.id}>` +
+        `, I just sent the bots command list to your dm's!`
     );
   message.channel.send(dmsent).then((msg) => {
-    msg.delete({ timeout: 3000 });
+    msg.delete({ timeout: 5000 });
   });
 }

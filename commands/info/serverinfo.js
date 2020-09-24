@@ -105,7 +105,7 @@ module.exports = {
       ])
       .addField("Roles:", `${roles.join(" ")}`);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 60000 });
+      msg.delete({ timeout: 50000 });
     });
   },
 };

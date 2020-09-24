@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const { stripIndent } = require("common-tags");
 const Discord = require("discord.js");
 
 module.exports = {
@@ -34,9 +33,11 @@ function helpMSG(client, message) {
   message.author.send(embed);
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
-    .setAuthor(`Sent some useful info to your DM's!`);
+    .setDescription(
+      `<@${message.author.id}>` + `, I just sent some useful info to your dm's!`
+    );
   message.channel.send(dmsent).then((msg) => {
-    msg.delete({ timeout: 3000 });
+    msg.delete({ timeout: 5000 });
   });
 }
 
@@ -61,6 +62,6 @@ function getCMD(client, message, input) {
   return message.channel
     .send(embed.setColor(process.env.GENERAL_COLOR).setDescription(info))
     .then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 50000 });
     });
 }

@@ -16,7 +16,7 @@ module.exports = {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -24,10 +24,14 @@ module.exports = {
     if (!message.channel.nsfw) {
       const embed = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(`This command can only be used in nsfw channels!`);
+        .setDescription(
+          `Sorry ` +
+            `<@!${message.author.id}>` +
+            `, this command can only be used in nsfw channels!`
+        );
       message.delete();
       message.channel.send(embed).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -37,10 +41,14 @@ module.exports = {
     if (!Subreddit) {
       const noreddit = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(`You did not specify your subreddit!`);
+        .setDescription(
+          `Sorry ` +
+            `<@!${message.author.id}>` +
+            `, you need to specify a subreddit that i am allowed to access!`
+        );
       message.delete();
       message.channel.send(noreddit).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -56,7 +64,7 @@ module.exports = {
         .setImage(image);
       message.delete();
       message.channel.send(Embed).then((msg) => {
-        msg.delete({ timeout: 60000 });
+        msg.delete({ timeout: 50000 });
       });
     } catch {
       //Warns that the subreddit specified was not a valid subreddit or that there wa an error fetching the image
@@ -65,7 +73,7 @@ module.exports = {
         .setAuthor(`Could not get info from that subreddit!`);
       message.delete();
       message.channel.send(badreddit).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }

@@ -38,9 +38,12 @@ module.exports = {
     message.author.send(about);
     const dmsent = new MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor(`Sent some info to your DM's!`);
+      .setDescription(
+        `<@${message.author.id}>` +
+          `, I just sent some useful info to your dm's!`
+      );
     message.channel.send(dmsent).then((msg) => {
-      msg.delete({ timeout: 3000 });
+      msg.delete({ timeout: 10000 });
     });
   },
 };

@@ -1,27 +1,27 @@
-//Author: ef1500
+//Author: ef1500 (fixed by seasnail as per)
 //Import Requirements
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "ez",
   category: "fun",
-  description: "GG EZ",
+  description: "ezzzz",
   run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
     //Deletes the command message
     message.delete();
-    //Sends response in an embed and deletes it after 5000ms
+    //Sends response in an embed and deletes it after 10000ms
     const embed = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage("https://i.imgur.com/vBgfzFL.png");
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 5000 });
+      msg.delete({ timeout: 10000 });
     });
   },
 };

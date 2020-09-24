@@ -17,9 +17,12 @@ module.exports = {
     message.author.send(invite);
     const dmsent = new Discord.MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor(`Sent the bot invite to your DM's!`);
+      .setDescription(
+        `<@${message.author.id}>` +
+          `, I just sent the bots invite link to your dm's!`
+      );
     message.channel.send(dmsent).then((msg) => {
-      msg.delete({ timeout: 3000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

@@ -1,4 +1,4 @@
-//Author: ef1500
+//Author: ef1500 (fixed by seasnail as per)
 //Imports requirements
 const { MessageEmbed } = require("discord.js");
 //Tells the bot what it can reply with
@@ -16,7 +16,7 @@ module.exports = {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -25,12 +25,12 @@ module.exports = {
     //Picks a response to send
     const randMonkey =
       monkeypics[Math.floor(Math.random() * monkeypics.length)];
-    //Sends response in an embed and deletes it after 5000ms
+    //Sends response in an embed and deletes it after 10000ms
     const embed = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage(randMonkey);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 5000 });
+      msg.delete({ timeout: 10000 });
     });
   },
 };

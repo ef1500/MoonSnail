@@ -1,3 +1,5 @@
+const Discord = require("discord.js");
+
 module.exports = {
   name: "avatar",
   category: "info",
@@ -12,15 +14,30 @@ module.exports = {
         message.content
     );
     //Sets the user as the first mention or if there is no mention, the author
-    let user =
-      message.mentions.users.first() || //guildmember
-      (await client.users.fetch(args[0]));
-
+    let userArray = message.content.split(" ");
+    let userArgs = userArray.slice(1);
+    let member =
+      message.mentions.members.first() ||
+      message.guild.members.cache.get(userArgs[0]) ||
+      message.guild.members.cache.find(
+        (x) =>
+          x.user.username.toLowerCase() === userArgs.slice(0).join(" ") ||
+          x.user.username === userArgs[0]
+      ) ||
+      message.member; //guildmember
     if (!user) {
-      message.channel.send("mention someone cunt");
+      const nouser = new Discord.MessageEmbed()
+        .setColor(process.env.FAIL_COLOR)
+        .setAuthor(`Sorry, I couldn't find that user.`);
+      message.delete();
+      message.channel.send(nouser).then((msg) => {
+        msg.delete({ timeout: 5000 });
+      });
+      return;
     }
-    console.log(args[0]);
     console.log(user);
+    console.log(args[0]);
+    message.channel.send(user.tag);
   },
 };
 /*

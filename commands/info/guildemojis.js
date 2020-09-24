@@ -36,7 +36,7 @@ module.exports = {
       )
       .setColor(process.env.GENERAL_COLOR);
     message.channel.send(Embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 50000 });
     });
   },
 };

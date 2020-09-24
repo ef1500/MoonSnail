@@ -1,5 +1,4 @@
 const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
 const moment = require("moment");
 
 module.exports = {
@@ -43,24 +42,24 @@ module.exports = {
       .format("dddd, MMMM Do YYYY, HH:mm:ss");
     let status = member.presence.status;
 
-    const userEmbed = new MessageEmbed()
+    const profile = new MessageEmbed()
       .setAuthor(member.user.tag, member.user.displayAvatarURL())
       .setColor(process.env.GENERAL_COLOR)
       .setThumbnail(member.user.displayAvatarURL())
-      .addField("Roles:", `<@&${member._roles.join("> <@&")}>`)
+      .addField("**Profile:**", ` <@${member.id}>`)
+      .addField("**Roles:**", `<@&${member._roles.join("> <@&")}>`)
       .addField(
-        "Account Created On:",
-        ` ${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
+        "**Account Created On:**",
+        `${moment.utc(member.user.createdAt).format("dddd, MMMM Do YYYY")}`,
         true
       )
       .addField(
-        "Joined the server on:",
-        `${joineddate} \n> ${joined} day(s) ago`
+        "**Joined the server on:**",
+        `${joineddate} \n» ${joined} day(s) ago`
       )
-      .addField("Status", status);
-
-    message.channel.send(userEmbed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      .addField("**Status:**", status);
+    message.channel.send(profile).then((msg) => {
+      msg.delete({ timeout: 50000 });
     });
   },
 };
