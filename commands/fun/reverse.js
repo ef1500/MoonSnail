@@ -5,7 +5,7 @@ module.exports = {
   name: "reverse",
   category: "fun",
   description: "Uno reverse lol.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
@@ -15,7 +15,7 @@ module.exports = {
     );
     //Deletes the command message
     message.delete();
-    //Sends the response as an embed and deletes it after 30000ms
+    //Sends the response in an embed and deletes it after 30000ms
     const embed = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage(

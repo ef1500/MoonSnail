@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
   name: "guildavatar",
-  category: "general",
+  category: "info",
   description: "Displays the guilds logo in an embed.",
   run: async (client, message, args) => {
     console.log(

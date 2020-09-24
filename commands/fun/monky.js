@@ -12,7 +12,7 @@ module.exports = {
   name: "monky",
   category: "fun",
   description: "monky brain",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

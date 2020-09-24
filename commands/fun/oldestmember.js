@@ -6,7 +6,7 @@ module.exports = {
   name: "oldestmember",
   category: "fun",
   description: "Get the oldest account creation date in the guild.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

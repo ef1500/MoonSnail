@@ -9,7 +9,7 @@ module.exports = {
   name: "rps",
   category: "fun",
   description: "Rock Paper Scissors.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

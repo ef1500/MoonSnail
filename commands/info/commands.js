@@ -47,7 +47,9 @@ function getAll(client, message) {
   message.delete();
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
-    .setAuthor(`Sent the bots command list to your Dm's!`);
+    .setDescription(
+      message.author + `, I just sent the bots command list to your dm's!`
+    );
   message.channel.send(dmsent).then((msg) => {
     msg.delete({ timeout: 3000 });
   });

@@ -6,7 +6,7 @@ module.exports = {
   name: "pog",
   category: "fun",
   description: "Pogchamp",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

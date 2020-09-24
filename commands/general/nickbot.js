@@ -3,7 +3,7 @@ const Guild = require("../../models/guild");
 
 module.exports = {
   name: "nickbot",
-  category: "moderation",
+  category: "general",
   description: "Changes the bots nickname.",
   usage: "nickbot {nickname}",
   run: async (client, message, args) => {

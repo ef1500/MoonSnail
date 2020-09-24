@@ -6,7 +6,7 @@ module.exports = {
   name: "ez",
   category: "fun",
   description: "GG EZ",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

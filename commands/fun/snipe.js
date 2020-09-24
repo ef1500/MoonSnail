@@ -7,7 +7,7 @@ module.exports = {
   category: "fun",
   description: "Pew pew pew",
   usage: `snipe {user}`,
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

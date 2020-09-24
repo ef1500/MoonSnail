@@ -1,13 +1,18 @@
 //Imports requirements
 const { MessageEmbed } = require("discord.js");
 const api = require("imageapi.js");
+const Guild = require("../../models/guild");
 
 module.exports = {
   name: "reddit",
   category: "fun",
   description: "Get an image from a subreddit.",
   usage: "reddit {subreddit}",
-  run: async (message) => {
+  run: async (client, message) => {
+    //Imports guild settings from db
+    const settings = await Guild.findOne({
+      guildID: message.guild.id,
+    });
     //Logs activity
     console.log(
       "ACTIVITY: " +

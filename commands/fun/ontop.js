@@ -5,7 +5,7 @@ module.exports = {
   name: "ontop",
   category: "fun",
   description: "MoonSnail on top",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

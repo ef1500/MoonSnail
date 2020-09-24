@@ -12,7 +12,7 @@ module.exports = {
   name: "bruh",
   category: "fun",
   description: "Shows a random bruh pic.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +

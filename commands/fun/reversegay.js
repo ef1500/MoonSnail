@@ -6,7 +6,7 @@ module.exports = {
   name: "reversegay",
   category: "fun",
   description: "Uno reverse but for weebs.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
