@@ -7,14 +7,18 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
     const avatarEmbed = new Discord.MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage(
-        message.guild.iconURL({ dynamic: true, format: "png", size: 512 })
+        message.guild.iconURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
       );
     message.delete({ timeout: 50000 });
     message.channel.send(avatarEmbed).then((msg) => {

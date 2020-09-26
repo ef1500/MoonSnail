@@ -43,7 +43,14 @@ module.exports = {
     let status = member.presence.status;
 
     const profile = new MessageEmbed()
-      .setAuthor(member.user.tag, member.user.displayAvatarURL())
+      .setAuthor(
+        member.user.tag,
+        member.user.displayAvatarURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
+      )
       .setColor(process.env.GENERAL_COLOR)
       .setThumbnail(member.user.displayAvatarURL())
       .addField("**Profile:**", ` <@${member.id}>`)

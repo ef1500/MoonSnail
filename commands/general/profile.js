@@ -38,7 +38,11 @@ module.exports = {
       .setColor(process.env.GENERAL_COLOR)
       .setAuthor(
         "Profile for " + member.user.tag,
-        member.user.displayAvatarURL()
+        member.user.displayAvatarURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
       )
       .addField(`**Level:** `, "`" + user.level + "`")
       .addField(`**XP:** `, "`" + `${user.xp}/${levelxp}` + "`");

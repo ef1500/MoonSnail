@@ -4,12 +4,13 @@ module.exports = {
   name: "avatar",
   category: "info",
   description: "Displays the mentioned users profile picture in an embed.",
-  usage: "avatar (self) *or* avatar {user} (id or mention)",
+  usage:
+    "avatar (self) *or* avatar {user} (id or mention only from same guild atm)",
   run: async (client, message, args) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -28,8 +29,10 @@ module.exports = {
     if (!member) {
       const nouser = new Discord.MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(`Sorry, I couldn't find that member.`);
-      message.delete();
+        .setDescription(
+          `Sorry ${message.author}, you need to input a valid memeber for me to search for.`
+        );
+      message.delete({ timeout: 50000 });
       message.channel.send(nouser).then((msg) => {
         msg.delete({ timeout: 5000 });
       });
@@ -38,17 +41,13 @@ module.exports = {
     console.log(member);
     const avatarEmbed = new Discord.MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
+      //.setAuthor(member.user.tag)
       .setImage(
         member.user.displayAvatarURL({
           dynamic: true,
           format: "png",
           size: 512,
-        }) ||
-          member.displayAvatarURL({
-            dynamic: true,
-            format: "png",
-            size: 512,
-          })
+        })
       );
     message.delete({ timeout: 50000 });
 
@@ -57,16 +56,3 @@ module.exports = {
     });
   },
 };
-/*
-
-
-message.delete();
-const nouser = new Discord.MessageEmbed()
-  .setColor(process.env.FAIL_COLOR)
-  .setAuthor(`Sorry, I couldn't find that user.`);
-message.delete();
-message.channel.send(nouser).then((msg) => {
-  msg.delete({ timeout: 3000 });
-});
-return;
-*/

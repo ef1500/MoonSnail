@@ -60,7 +60,13 @@ module.exports = {
     const embed = new MessageEmbed()
       .setDescription(`**Server info: ${message.guild.name}**`)
       .setColor(process.env.GENERAL_COLOR)
-      .setThumbnail(message.guild.iconURL({ dynamic: true }))
+      .setThumbnail(
+        message.guild.iconURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
+      )
       .addField("General Info:", [
         `**» Name:** ${message.guild.name}`,
         `**» Owner:** <@${message.guild.owner.user.id}>`,

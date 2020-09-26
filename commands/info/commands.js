@@ -5,11 +5,11 @@ const Discord = require("discord.js");
 module.exports = {
   name: "commands",
   category: "info",
-  description: "Dm's you a full list of bot commands.",
+  description: "dm's you a full list of bot commands.",
   run: async (client, message) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -49,8 +49,7 @@ function getAll(client, message) {
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
     .setDescription(
-      `<@${message.author.id}>` +
-        `, I just sent the bots command list to your dm's!`
+      `<@${message.author.id}>` + `, I just sent you a list of all my commands!`
     );
   message.channel.send(dmsent).then((msg) => {
     msg.delete({ timeout: 5000 });

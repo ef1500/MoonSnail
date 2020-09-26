@@ -30,7 +30,13 @@ module.exports = {
     });
     let Embed = new MessageEmbed()
       .setTitle(`Emojis in ${message.guild.name}:`)
-      .setThumbnail(message.guild.iconURL({ dynamic: true }))
+      .setThumbnail(
+        message.guild.iconURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
+      )
       .setDescription(
         `**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Total [${OverallEmojis}]**`
       )

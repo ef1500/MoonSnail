@@ -11,11 +11,10 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-
     if (!args.length) {
       const nosuggestion = new Discord.MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
@@ -60,7 +59,11 @@ module.exports = {
     });
     const suggestionsent = new Discord.MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor("Thanks! I sent your suggestion to " + "#" + channel.name);
+      .setAuthor(
+        `Thanks ${message.author.username}! I sent your suggestion to ` +
+          "#" +
+          channel.name
+      );
     message.delete();
     message.channel.send(suggestionsent).then((msg) => {
       msg.delete({ timeout: 5000 });

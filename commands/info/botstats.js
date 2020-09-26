@@ -1,6 +1,4 @@
-const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
-const { version } = require("discord.js");
 
 module.exports = {
   name: "botstats",
@@ -9,7 +7,7 @@ module.exports = {
   run: async (client, message) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );

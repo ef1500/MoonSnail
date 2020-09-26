@@ -45,8 +45,7 @@ module.exports = {
         `No idea 😄`,
       ];
       //Picks a response to send
-      let response =
-        responses[Math.floor(Math.random() * responses.length - 1)];
+      let response = responses[Math.floor(Math.random() * responses.length)];
       //Deletes the command message
       message.delete({ timeout: 50000 });
       //Sends the question and response in an embed

@@ -1,18 +1,17 @@
 const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
 
 module.exports = {
   name: "about",
   category: "info",
-  description: "Dm's a user some information about the bot.",
+  description: "dm's a user some information about the bot.",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-    message.delete();
+    message.delete({ timeout: 5000 });
     const about = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setAuthor("About MoonSnail", client.user.avatarURL())

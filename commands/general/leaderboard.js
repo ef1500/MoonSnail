@@ -49,7 +49,7 @@ module.exports = {
               message.guild.members.cache.get(res[i].userId) || "Member left";
             if (member === "Member left") {
               embed.addField(
-                `${i + 1}. <@!${member}>`,
+                `${i + 1}. ${member}`,
                 ` **Level**: ${res[i].level} **XP**: ${res[i].xp}/` +
                   res[i].level * res[i].level * 100
               );

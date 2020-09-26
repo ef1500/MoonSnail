@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );

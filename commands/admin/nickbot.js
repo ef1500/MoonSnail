@@ -3,7 +3,7 @@ const Guild = require("../../models/guild");
 
 module.exports = {
   name: "nickbot",
-  category: "general",
+  category: "admin",
   description: "Changes the bots nickname.",
   usage: "nickbot {nickname}",
   run: async (client, message, args) => {
@@ -12,7 +12,7 @@ module.exports = {
     });
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -32,7 +32,7 @@ module.exports = {
       return;
     }
     if (message.member.hasPermission("MANAGE_NICKNAMES")) {
-      let nick = message.content.slice(settings.prefix.length + 8);
+      let nick = message.content.slice(settings.prefix.length + 9);
       if (!nick) {
         const nonick = new Discord.MessageEmbed()
           .setColor(process.env.FAIL_COLOR)
@@ -50,10 +50,12 @@ module.exports = {
       message.guild.me.setNickname(nick);
       const nickupdate = new Discord.MessageEmbed()
         .setColor(process.env.SUCCESS_COLOR)
-        .setAuthor("Thanks! You just changed my nickname to" + nick);
-      message.delete();
+        .setDescription(
+          `Thanks ${message.author}! You just changed my nickname to \`${nick}\``
+        );
+      message.delete({ timeout: 50000 });
       message.channel.send(nickupdate).then((msg) => {
-        msg.delete({ timeout: 10000 });
+        msg.delete({ timeout: 50000 });
       });
       return;
     }

@@ -9,18 +9,20 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-
     if (!args.length) {
       const noloc = new Discord.MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
         .setDescription(
           `Sorry ${message.author}, you need to input a location for me to search for.`
         );
-      message.channel.send(noloc);
+      message.delete({ timeout: 5000 });
+      message.channel.send(noloc).then((msg) => {
+        msg.delete({ timeout: 5000 });
+      });
       return;
     }
 
@@ -39,6 +41,7 @@ module.exports = {
           .addField("Time Observed", result[0].current.observationtime, true)
           .addField("Wind", result[0].current.winddisplay, true)
           .setThumbnail(result[0].current.imageUrl);
+        message.delete({ timeout: 50000 });
         message.channel.send(embed).then((msg) => {
           msg.delete({ timeout: 50000 });
         });
