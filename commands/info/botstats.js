@@ -1,6 +1,4 @@
-const Discord = require("discord.js");
 const { MessageEmbed } = require("discord.js");
-const { version } = require("discord.js");
 
 module.exports = {
   name: "botstats",
@@ -9,7 +7,7 @@ module.exports = {
   run: async (client, message) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -21,8 +19,9 @@ module.exports = {
           `» Channels: \`${client.channels.cache.size.toLocaleString()}\` \n` +
           `» Users: \`${client.users.cache.size.toLocaleString()}\``
       );
+    message.delete({ timeout: 50000 });
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 50000 });
     });
   },
 };

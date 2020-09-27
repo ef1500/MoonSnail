@@ -1,5 +1,4 @@
-//Author: ef1500
-
+//Author: ef1500 (fixed by seasnail as per)
 //Import Requirements
 const { MessageEmbed } = require("discord.js");
 //Tells the bot what it can reply with
@@ -12,24 +11,24 @@ module.exports = {
   name: "bruh",
   category: "fun",
   description: "Shows a random bruh pic.",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
+    //Picks a response to send
+    const randBruh = bruhpics[Math.floor(Math.random() * bruhpics.length)];
     //Deletes the command message
     message.delete();
-    //Picks which reply to send
-    const randBruh = bruhpics[Math.floor(Math.random() * bruhpics.length)];
-    //Sends the reply in an embed and deletes it after 3000ms
+    //Sends response in an embed and deletes it after 10000ms
     const embed = new MessageEmbed()
-      .setColor(process.env.FAIL_COLOR)
+      .setColor(process.env.GENERAL_COLOR)
       .setImage(randBruh);
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 5000 });
+      msg.delete({ timeout: 10000 });
     });
   },
 };

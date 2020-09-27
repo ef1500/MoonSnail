@@ -1,18 +1,17 @@
 const { MessageEmbed } = require("discord.js");
-const Discord = require("discord.js");
 
 module.exports = {
   name: "about",
   category: "info",
-  description: "Dm's you some information about the bot.",
+  description: "dm's a user some information about the bot.",
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-    message.delete();
+    message.delete({ timeout: 5000 });
     const about = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setAuthor("About MoonSnail", client.user.avatarURL())
@@ -38,9 +37,12 @@ module.exports = {
     message.author.send(about);
     const dmsent = new MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor(`Sent some info to your DM's!`);
+      .setDescription(
+        `<@${message.author.id}>` +
+          `, I just sent some useful info to your dm's!`
+      );
     message.channel.send(dmsent).then((msg) => {
-      msg.delete({ timeout: 3000 });
+      msg.delete({ timeout: 5000 });
     });
   },
 };

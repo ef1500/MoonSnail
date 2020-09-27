@@ -5,11 +5,11 @@ const Discord = require("discord.js");
 module.exports = {
   name: "commands",
   category: "info",
-  description: "Dm's you a full list of bot commands.",
+  description: "dm's you a full list of bot commands.",
   run: async (client, message) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -44,11 +44,14 @@ function getAll(client, message) {
         `help {command}\` to see more information about a specific command. \n \n ${info}`
     )
   );
+  console.log;
   message.delete();
   const dmsent = new Discord.MessageEmbed()
     .setColor(process.env.SUCCESS_COLOR)
-    .setAuthor(`Sent the bots command list to your Dm's!`);
+    .setDescription(
+      `<@${message.author.id}>` + `, I just sent you a list of all my commands!`
+    );
   message.channel.send(dmsent).then((msg) => {
-    msg.delete({ timeout: 3000 });
+    msg.delete({ timeout: 5000 });
   });
 }

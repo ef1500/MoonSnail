@@ -6,22 +6,22 @@ module.exports = {
   name: "pog",
   category: "fun",
   description: "Pogchamp",
-  run: async (message) => {
+  run: async (client, message) => {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
     //Deletes the command message
     message.delete();
-    //Sends the response in an embed and deletes it after 5000ms
+    //Sends the response in an embed and deletes it after 10000ms
     const embed = new MessageEmbed()
       .setColor(process.env.GENERAL_COLOR)
       .setImage("https://pics.me.me/thumb_pogchamp-43297127.png");
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 5000 });
+      msg.delete({ timeout: 10000 });
     });
   },
 };

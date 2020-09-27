@@ -8,14 +8,16 @@ module.exports = {
   category: "general",
   description: "Shows the xp leaderboard for this server.",
   run: async (client, message, args) => {
-    //log activity
+    //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.member.user +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-    message.delete();
+    //Deletes the command message
+    message.delete({ timeout: 50000 });
+    //Looks for the user in the database
     profiles
       .find({ guildId: message.guild.id })
       .sort([
@@ -28,7 +30,7 @@ module.exports = {
         }
         const embed = new MessageEmbed()
           .setAuthor(
-            `Leaderboard for: ${message.guild.name}`,
+            `Leaderboard for ${message.guild.name}`,
             client.user.avatarURL()
           )
           .setThumbnail(message.guild.iconURL({ dynamic: true }))
@@ -53,7 +55,7 @@ module.exports = {
               );
             } else {
               embed.addField(
-                `${i + 1}. ${member.user.username}`,
+                `${i + 1}. ${member.user.tag}`,
                 ` **Level**: ${res[i].level} **XP**: ${res[i].xp}/` +
                   res[i].level * res[i].level * 100
               );
@@ -72,16 +74,14 @@ module.exports = {
               );
             } else {
               embed.addField(
-                `${i + 1}. ${member.user.username}`,
+                `${i + 1}. ${member.user.tag}`,
                 `**Level**: ${res[i].level} **XP**: ${res[i].xp}/` +
                   res[i].level * res[i].level * 100
               );
             }
           }
         }
-        message.channel.send(embed).then((msg) => {
-          msg.delete({ timeout: 120000 });
-        });
+        message.channel.send(embed);
       });
   },
 };

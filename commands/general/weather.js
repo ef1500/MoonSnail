@@ -1,6 +1,5 @@
 const weather = require("weather-js");
 const Discord = require("discord.js");
-const discord = require("discord.js");
 
 module.exports = {
   name: "weather",
@@ -10,18 +9,20 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
-
     if (!args.length) {
-      const badloc = new Discord.MessageEmbed()
+      const noloc = new Discord.MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(
-          `Sorry, I couldn't find any information about that location.`
+        .setDescription(
+          `Sorry ${message.author}, you need to input a location for me to search for.`
         );
-      message.channel.send(badloc);
+      message.delete({ timeout: 5000 });
+      message.channel.send(noloc).then((msg) => {
+        msg.delete({ timeout: 5000 });
+      });
       return;
     }
 
@@ -30,7 +31,7 @@ module.exports = {
       result
     ) {
       try {
-        let embed = new discord.MessageEmbed()
+        let embed = new Discord.MessageEmbed()
           .setTitle(`Weather - ${result[0].location.name}`)
           .setColor(process.env.GENERAL_COLOR)
           .addField("Temperature", `${result[0].current.temperature} °C`, true)
@@ -40,17 +41,19 @@ module.exports = {
           .addField("Time Observed", result[0].current.observationtime, true)
           .addField("Wind", result[0].current.winddisplay, true)
           .setThumbnail(result[0].current.imageUrl);
+        message.delete({ timeout: 50000 });
         message.channel.send(embed).then((msg) => {
-          msg.delete({ timeout: 60000 });
+          msg.delete({ timeout: 50000 });
         });
       } catch (err) {
+        message.delete({ timeout: 5000 });
         const badloc = new Discord.MessageEmbed()
           .setColor(process.env.FAIL_COLOR)
-          .setAuthor(
-            `Sorry, I couldn't find any information about that location.`
+          .setDescription(
+            `Sorry ${message.author}, I couldn't find any information about that location.`
           );
         message.channel.send(badloc).then((msg) => {
-          msg.delete({ timeout: 3000 });
+          msg.delete({ timeout: 5000 });
         });
       }
     });

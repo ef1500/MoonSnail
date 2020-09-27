@@ -1,4 +1,3 @@
-const { relativeTimeThreshold } = require("moment");
 const mongoose = require("mongoose");
 const Guild = require("../models/guild");
 const { MessageEmbed } = require("discord.js");

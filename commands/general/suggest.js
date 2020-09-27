@@ -11,17 +11,19 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
     if (!args.length) {
       const nosuggestion = new Discord.MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(`Please input a suggestion!`);
+        .setDescription(
+          `${message.author}, please input a suggestion to send!`
+        );
       message.delete();
       message.channel.send(nosuggestion).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -57,7 +59,11 @@ module.exports = {
     });
     const suggestionsent = new Discord.MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor("Sent Your Suggestion to " + "#" + channel.name);
+      .setAuthor(
+        `Thanks ${message.author.username}! I sent your suggestion to ` +
+          "#" +
+          channel.name
+      );
     message.delete();
     message.channel.send(suggestionsent).then((msg) => {
       msg.delete({ timeout: 5000 });

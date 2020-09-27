@@ -30,13 +30,20 @@ module.exports = {
     });
     let Embed = new MessageEmbed()
       .setTitle(`Emojis in ${message.guild.name}:`)
-      .setThumbnail(message.guild.iconURL({ dynamic: true }))
+      .setThumbnail(
+        message.guild.iconURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
+      )
       .setDescription(
         `**Animated [${Animated}]**:\n${EmojisAnimated}\n\n**Standard [${EmojiCount}]**:\n${Emojis}\n\n**Total [${OverallEmojis}]**`
       )
       .setColor(process.env.GENERAL_COLOR);
+    message.delete({ timeout: 50000 });
     message.channel.send(Embed).then((msg) => {
-      msg.delete({ timeout: 30000 });
+      msg.delete({ timeout: 50000 });
     });
   },
 };

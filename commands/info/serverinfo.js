@@ -60,7 +60,13 @@ module.exports = {
     const embed = new MessageEmbed()
       .setDescription(`**Server info: ${message.guild.name}**`)
       .setColor(process.env.GENERAL_COLOR)
-      .setThumbnail(message.guild.iconURL({ dynamic: true }))
+      .setThumbnail(
+        message.guild.iconURL({
+          dynamic: true,
+          format: "png",
+          size: 512,
+        })
+      )
       .addField("General Info:", [
         `**» Name:** ${message.guild.name}`,
         `**» Owner:** <@${message.guild.owner.user.id}>`,
@@ -104,8 +110,9 @@ module.exports = {
         `**» Boost Count:** ${message.guild.premiumSubscriptionCount || "0"}`,
       ])
       .addField("Roles:", `${roles.join(" ")}`);
+    message.delete({ timeout: 50000 });
     message.channel.send(embed).then((msg) => {
-      msg.delete({ timeout: 60000 });
+      msg.delete({ timeout: 50000 });
     });
   },
 };

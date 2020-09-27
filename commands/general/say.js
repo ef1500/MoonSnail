@@ -1,4 +1,3 @@
-const { MessageEmbed } = require("discord.js");
 const Discord = require("discord.js");
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
   run: async (client, message, args) => {
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -21,7 +20,7 @@ module.exports = {
         .setAuthor("You must specify something for the bot to repeat.");
       message.channel
         .send(saysomething)
-        .then((m) => m.delete({ timeout: 3000 }));
+        .then((m) => m.delete({ timeout: 5000 }));
       return;
     }
 

@@ -7,8 +7,9 @@ module.exports = (client, member) => {
     if (message.channel.type === "dm") {
       return;
     }
-    const { guild, member } = message;
-    if (member.user.bot) {
+    const { guild } = message;
+    const member = message.author;
+    if (member.bot) {
       return;
     }
     addXP(guild.id, member.id, 23, message);

@@ -20,7 +20,7 @@ module.exports = {
         .setAuthor("Sorry, you don't have the required permissions.");
       message.delete();
       message.channel.send(noperms).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -31,7 +31,7 @@ module.exports = {
         .setAuthor(`Please mention a valid user.`);
       message.delete();
       message.channel.send(nomember).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -41,7 +41,7 @@ module.exports = {
         .setAuthor(`Sorry, I couldn't mute that member.`);
       message.delete();
       message.channel.send(cantmute).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -53,7 +53,7 @@ module.exports = {
             name: "Muted",
             hoist: false,
             mentionable: false,
-            color: "#000000",
+            color: "#ffff",
             permissions: [],
           },
         });
@@ -68,13 +68,14 @@ module.exports = {
         SEND_TTS_MESSAGES: false,
         ATTACH_FILES: false,
         SPEAK: false,
-        COLOR: "#c90808",
       });
     });
     await tomute.roles.add(muterole);
     const muted = new Discord.MessageEmbed()
       .setColor(process.env.SUCCESS_COLOR)
-      .setAuthor(tomute.user.username + " has been successfully muted!");
+      .setDescription(`<@${tomute.id}>` + " has been successfully muted!")
+      .addField(`Reason:`);
+
     message.channel.send(muted);
   },
 };

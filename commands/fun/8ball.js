@@ -11,7 +11,7 @@ module.exports = {
     //Logs activity
     console.log(
       "ACTIVITY: " +
-        message.author.username +
+        message.member.user.tag +
         " ran the command: " +
         message.content
     );
@@ -25,30 +25,37 @@ module.exports = {
     if (!question) {
       const embed = new MessageEmbed()
         .setColor(process.env.FAIL_COLOR)
-        .setAuthor(`You need to specify a question for me to reply to.`);
-      message.delete();
+        .setDescription(
+          `<@${message.author.id}>` +
+            `, you need to specify a question for me to respond to.`
+        );
+      message.delete({ timeout: 5000 });
       message.channel.send(embed).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     } else {
       //Tells the bot what it can respond with
       let responses = [
-        "Yes",
-        "No",
-        "Definetly",
+        "✅ Yes ✅",
         "Absoloutely",
+        "❌ No ❌",
         "Not in a million years",
+        "¿Who knows?",
+        `No idea 😄`,
       ];
       //Picks a response to send
-      let response =
-        responses[Math.floor(Math.random() * responses.length - 1)];
+      let response = responses[Math.floor(Math.random() * responses.length)];
+      //Deletes the command message
+      message.delete({ timeout: 50000 });
       //Sends the question and response in an embed
-      let Embed = new MessageEmbed()
+      let qanda = new MessageEmbed()
         .setAuthor("MoonSnail Fortune Teller:", client.user.avatarURL())
-        .setDescription(`Your question: ${question}\nMy reply: ${response}`)
+        .setDescription(`Your question: ${question} \nMy answer: ${response}`)
         .setColor(process.env.GENERAL_COLOR);
-      message.channel.send(Embed);
+      message.channel.send(qanda).then((msg) => {
+        msg.delete({ timeout: 50000 });
+      });
     }
   },
 };

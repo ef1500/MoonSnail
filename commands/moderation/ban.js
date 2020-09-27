@@ -18,7 +18,7 @@ module.exports = {
         .setAuthor("Sorry, you don't have the required permissions.");
       message.delete();
       message.channel.send(noperms).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -29,7 +29,7 @@ module.exports = {
         .setAuthor(`Sorry, I couldn't find that member.`);
       message.delete();
       message.channel.send(nomember).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
@@ -37,7 +37,7 @@ module.exports = {
       member.ban().then((member) => {
         const banned = new Discord.MessageEmbed()
           .setColor(process.env.SUCCESS_COLOR)
-          .setAuthor(member.displayName + " has been successfully banned!");
+          .setDescription(`<@${member.id}>` + " has been successfully banned!");
         message.channel.send(banned);
         return;
       });
@@ -47,7 +47,7 @@ module.exports = {
         .setAuthor(`Sorry, I couldn't ban that member.`);
       message.delete();
       message.channel.send(cantban).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }

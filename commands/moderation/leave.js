@@ -19,7 +19,7 @@ module.exports = {
         .setColor(process.env.FAIL_COLOR)
         .setAuthor("Sorry, you don't have the required permissions.");
       message.channel.send(noperms).then((msg) => {
-        msg.delete({ timeout: 3000 });
+        msg.delete({ timeout: 5000 });
       });
       return;
     }
